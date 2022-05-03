@@ -6,6 +6,10 @@ Check out our demo at [Backstage Demo](https://www.youtube.com/watch?v=MDHjMw_IN
 
 Backstage originated as a project for COS 495, but rapidly developed into a startup that has been accepted into the Neo accelerator program, and is currently valued at $5 million. As such, for this COS 495 project, we have forked off of our company's Github repository and are submitting a more limited feature set of our product for this class. This is largely because we don't wish to share our company's repository with others. We would like to acknowledge both Quinn Donohue and Jorge Zreik for conducting development work for the startup, much of which contributed to the product’s overall development. Nonetheless, the feature set being submitted for this class has largely been developed by Alberto Rigail, Aryaman Khandelwal, and David Lipman.
 
+# Disclaimers
+
+Additionally, we recognize that it is bad practice to include a .env file in a public repository. However, we have provided it here for the purpose of you grading this assignment.
+
 ## Dependencies
 
 - `yarn`
