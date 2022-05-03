@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model User {
+  id                  Int            @id @default(autoincrement())
+  username            String         @unique
+  fullName            String
+  email               String         @unique
+  profileInfo         String
+  profilePhoto        String         @default("https://d17iuxf4c4gu6d.cloudfront.net/default/artist-profile-photo.jpg")
+  artist              Artist?        @relation("artist")
+  nfts                Nft[]
+  following           Artist[]       @relation("following")
+
+  @@map("users")
+}
+
+model Artist {
+  id            Int          @id @default(autoincrement())
+  fullName      String
+  bioInfo       String
+  profileHeader String       @default("https://d17iuxf4c4gu6d.cloudfront.net/default/artist-profile-header.jpg")
+  twitter       String
+  instagram     String
+  spotify       String
+  benefits      String
+  promoSong     String
+  defaultCollectionId Int?    @unique
+  userId        Int          @unique
+  user          User         @relation("artist", fields: [userId], references: [id])
+  collections   Collection[]
+  nfts          Nft[]
+  followers     User[]       @relation("following")
+
+  @@map("artists")
+}
+
+model Nft {
+  id              Int        @id @default(autoincrement())
+  isMinted        Boolean    @default(false)
+  contractAddress String
+  pinataUrl       String?
+  tokenId         String     @unique
+  collectionId    Int
+  tier            Tier       @default(BRONZE)
+  serialNum       Int        @default(autoincrement())
+  img             String
+  title           String
+  price           Float
+  ownerId         Int        @default(1)
+  artistId        Int
+  artist          Artist     @relation(fields: [artistId], references: [id])
+  collection      Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  owner           User       @relation(fields: [ownerId], references: [id])
+
+  @@unique([collectionId, tier, serialNum])
+  @@map("nfts")
+}
+
+model Collection {
+  id             Int      @id @default(autoincrement())
+  artistId       Int
+  collectionName String
+  description    String   @default("")
+  launchDate     DateTime @default(now())
+  artist         Artist   @relation(fields: [artistId], references: [id])
+  nfts           Nft[]
+
+  @@unique([artistId, collectionName])
+  @@map("collections")
+}
+
+model WaitingList {
+  id    Int    @id @default(autoincrement())
+  email String @unique
+
+  @@map("waiting_list")
+}
+
+enum Tier {
+  BRONZE
+  SILVER
+  GOLD
+  PLATINUM
+}

@@ -1,0 +1,15 @@
+{
+  "short_name": "Backstage",
+  "name": "Backstage",
+  "icons": [
+    {
+      "src": "images/backstage-logo.svg",
+      "type": "image/svg",
+      "sizes": "any"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#485ED1",
+  "background_color": "#485ED1"
+}

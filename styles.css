@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fonts */
+
+@font-face {
+  font-family: "AvenirNext";
+  src: url("/fonts/AvenirNext/AvenirNextRegular.otf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "AvenirNext";
+  src: url("/fonts/AvenirNext/AvenirNextItalic.otf");
+  font-style: italic;
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "AvenirNext";
+  src: url("/fonts/AvenirNext/AvenirNextBold.otf");
+  font-style: normal;
+  font-weight: bold;
+  font-display: block;
+}
+
+/* Global sizing */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+}
+
+input:focus {
+  outline: none;
+}
+
+/* Utility styles */
+
+@layer utilities {
+  .theme-underline-text {
+    @apply underline;
+    @apply underline-offset-8;
+    @apply decoration-purple-500;
+    @apply decoration-8;
+  }
+  .theme-underline-border {
+    @apply border-b-8;
+    @apply border-purple-500
+  }
+  .title-big {
+    @apply text-6xl;
+    @apply font-bold;
+  }
+  .subtitle-big {
+    @apply text-4xl;
+    @apply font-light;
+  }
+  .title-small {
+    @apply text-4xl;
+    @apply font-bold;
+  }
+  .subtitle-small {
+    @apply text-2xl;
+    @apply font-light;
+  }
+  .grid-cols-responsive {
+    @apply grid-cols-1;
+    @apply sm:grid-cols-2;
+    @apply lg:grid-cols-3;
+    @apply 2xl:grid-cols-4;
+  }
+}
